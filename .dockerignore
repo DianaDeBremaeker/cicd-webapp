@@ -1,0 +1,8 @@
+# Exclude node_modules directory
+node_modules
+
+# Exclude Docker-related files
+Dockerfile
+docker-compose.yml
+docker-compose-sqlite.yml
+.dockerignore

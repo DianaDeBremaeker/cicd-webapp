@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  webapp:
+    build:
+      context: . # The path to your Dockerfile (current directory in this case)
+      dockerfile: Dockerfile # Specify the Dockerfile to use (optional if using default name)
+    volumes:
+      - ./dockerlab/webapp/database:/app/database # Bind mount for SQLite database (if still needed)
+    ports:
+      - '3001:3000' # Map host port 3001 to container port 3000
+    depends_on:
+      - database # Database service is started before the webapp service attempts to connect
+    environment:
+      - MYSQL_URL=mysql://root:root_password@database:3306/webapp_db # MySQL connection URL
+    restart: always # Automatically restart the container if it stops
+
+  database:
+    image: mysql:8.0 # Use MySQL 8.0 official image
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password # Root password for MySQL
+      MYSQL_DATABASE: webapp_db # Initial database for the webapp
+      MYSQL_USER: webapp_user # User created for the webapp
+      MYSQL_PASSWORD: user_password # Password for the webapp user
+    volumes:
+      - mysql_data:/var/lib/mysql # Store MySQL data persistently in a named volume
+
+  test:
+    image: webapp-webapp # Re-use the existing webapp image for running tests
+    depends_on:
+      - webapp # Make sure the webapp is up and running before running the tests
+    environment:
+    - API_URL=http://webapp:3000 # Use the service name (webapp) as the hostname in Docker
+    command: ["yarn", "test"] # Override the default command to run tests
+
+volumes:
+  mysql_data: # Define a volume to persist MySQL data
