@@ -29,5 +29,10 @@ jobs:
         env:
           ESLINT_USE_FLAT_CONFIG: false
 
-      - name: Run a simple command
-        run: echo "Hello, GitHub Actions!"
+      - name: Build Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile # Dockerfile in the root of the repository
+          tags: dianadebremaeker/webapp:latest
+          push: false  # Do not push the image to Docker Hub yet
