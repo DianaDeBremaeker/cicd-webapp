@@ -20,3 +20,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run linting
+        run: yarn lint
+
+      - name: Run a simple command
+        run: echo "Hello, GitHub Actions!"
