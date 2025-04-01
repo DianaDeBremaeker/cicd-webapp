@@ -1,5 +1,14 @@
-# Start from a Node.js image
+# Start from a alpine.js image
 FROM node:alpine3.20
+
+# Install system dependencies for SQLite3 & node-gyp
+RUN apk update && apk add --no-cache \
+    python3 \
+    py3-pip \
+    build-base \
+    make \
+    g++ \
+    gcc
 
 # Copy package.json and yarn.lock files to the container
 COPY package.json yarn.lock ./
@@ -19,5 +28,5 @@ COPY . .
 # Expose port 3000, as the application will be reachable on this port
 EXPOSE 3000
 
-# 7. Command to start the application when the container starts
+# Command to start the application when the container starts
 CMD ["yarn", "start"]

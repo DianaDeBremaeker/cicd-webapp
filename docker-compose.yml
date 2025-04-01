@@ -26,12 +26,12 @@ services:
       - mysql_data:/var/lib/mysql # Store MySQL data persistently in a named volume
 
   test:
-    image: webapp-webapp # Re-use the existing webapp image for running tests
+    image: webapp # Re-use the existing webapp image for running tests
     depends_on:
       - webapp # Make sure the webapp is up and running before running the tests
     environment:
-    - API_URL=http://webapp:3000 # Use the service name (webapp) as the hostname in Docker
-    command: ["yarn", "test"] # Override the default command to run tests
+      - API_URL=http://webapp:3000 # Use the service name (webapp) as the hostname in Docker
+    command: ['yarn', 'test'] # Override the default command to run tests
 
 volumes:
   mysql_data: # Define a volume to persist MySQL data
