@@ -26,6 +26,8 @@ jobs:
 
       - name: Run ESLint
         run: yarn lint
+        env:
+          ESLINT_USE_FLAT_CONFIG: false
 
       - name: Run a simple command
         run: echo "Hello, GitHub Actions!"
