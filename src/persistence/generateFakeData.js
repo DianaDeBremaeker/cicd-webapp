@@ -1,4 +1,4 @@
-import animal from "@fakerjs/animal";
+import animal from '@fakerjs/animal';
 
 /**
  * Generates fake data for the animals collection, including a

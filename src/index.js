@@ -1,9 +1,9 @@
 import express from 'express';
 import Boom from '@hapi/boom';
-import morgan from 'morgan'
-import persistence from './persistence/index.js'
+import morgan from 'morgan';
+import persistence from './persistence/index.js';
 
-const PORT = 3000
+const PORT = 3000;
 
 function asyncMiddleware(fn) {
   return (req, res, next) => {
@@ -42,7 +42,7 @@ app.use((err, _, res, next) => {
       error: err.message,
     });
   next();
-})
+});
 
 persistence
   .initialize()

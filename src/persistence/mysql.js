@@ -1,6 +1,6 @@
-import knex from "knex";
-import Boom from "@hapi/boom";
-import generateFakeData from "./generateFakeData.js";
+import knex from 'knex';
+import Boom from '@hapi/boom';
+import generateFakeData from './generateFakeData.js';
 
 let knexInstance;
 
@@ -10,7 +10,11 @@ export async function initialize() {
     connection: process.env.MYSQL_URL,
   });
   await knexInstance.raw('CREATE DATABASE IF NOT EXISTS `animals`;');
-  await knexInstance.raw('CREATE TABLE IF NOT EXISTS `animals` (`id` INT NOT NULL, `name` VARCHAR(255) NOT NULL, PRIMARY KEY (`id`));');
+  await knexInstance.raw(
+    'CREATE TABLE IF NOT EXISTS `animals` (' +
+    '`id` INT NOT NULL, `name` VARCHAR(255) NOT NULL, PRIMARY KEY (`id`));'
+  );
+  
 
   const [animalCount] = await knexInstance('animals').count();
 

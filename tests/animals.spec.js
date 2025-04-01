@@ -35,4 +35,4 @@ describe('Animals', () => {
       error: 'Animal not found',
     });
   });
-})
+});
