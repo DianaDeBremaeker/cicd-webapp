@@ -12,7 +12,7 @@ export async function initialize() {
   await knexInstance.raw('CREATE DATABASE IF NOT EXISTS `animals`;');
   await knexInstance.raw(
     'CREATE TABLE IF NOT EXISTS `animals` (' +
-    '`id` INT NOT NULL, `name` VARCHAR(255) NOT NULL, PRIMARY KEY (`id`));'
+    '`id` INT NOT NULL, `name` VARCHAR(255) NOT NULL, PRIMARY KEY (`id`));',
   );
   
 
