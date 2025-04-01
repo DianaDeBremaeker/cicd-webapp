@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run linting
+      - name: Run ESLint
         run: yarn lint
 
       - name: Run a simple command
