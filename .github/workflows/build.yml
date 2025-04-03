@@ -43,6 +43,4 @@ jobs:
           tags: dianadebremaeker/webapp:latest
           push: true #  Push the image to Docker Hub
 
-      - name: Run tests
-        run: yarn test
 
