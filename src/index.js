@@ -3,7 +3,7 @@ import Boom from '@hapi/boom';
 import morgan from 'morgan';
 import persistence from './persistence/index.js';
 
-const PORT = 3001;
+const PORT = 3000;
 
 function asyncMiddleware(fn) {
   return (req, res, next) => {
@@ -41,6 +41,7 @@ app.use((err, _, res, next) => {
     .json({
       error: err.message,
     });
+  next();
 });
 
 persistence
