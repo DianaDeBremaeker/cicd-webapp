@@ -36,7 +36,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push Docker image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Dockerfile # Dockerfile in the root of the repository
